@@ -1,0 +1,24 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Package name'
+        required: true
+      folder:
+        description: 'Package folder'
+        required: true
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd ${{github.event.inputs.folder}} && npm install
+      - run: cd ${{github.event.inputs.folder}} && npm run build
+      # - name: Publish to NPM
+      #   run: npm publish ${{github.event.inputs.folder}}
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: cd ${{github.event.inputs.folder}} && cat build.txt && echo "Published"

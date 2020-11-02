@@ -5,7 +5,6 @@ on:
     branches:
       - master
 
-
 jobs:
   first:
     runs-on: ubuntu-latest
@@ -16,8 +15,6 @@ jobs:
           {name: 'package2', path: './package2'}
         ]
     steps:
-      - name: Get result
-        run: echo "${{matrix.package.name}} ${{matrix.package.path}}"
       - uses: actions/checkout@v2
       - name: Check if version has been updated
         id: checkVersion
@@ -25,5 +22,10 @@ jobs:
         with:
           diff-search: true
           file-name: ${{matrix.package.path}}/package.json
-      - if: steps.checkVersion.outputs.changed == 'true'
-        run: 'echo "${{matrix.package.name}} updated"'
+      - name: Invoke workflow without inputs
+        if: steps.checkVersion.outputs.changed == 'true'
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Publish
+          token: ${{secrets.PERSONAL_TOKEN}}
+          inputs: '{ name: ${{matrix.package.name}}, folder: ${{matrix.package.path}} }'
