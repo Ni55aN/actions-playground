@@ -22,7 +22,7 @@ jobs:
         with:
           diff-search: true
           file-name: ${{matrix.package.path}}/package.json
-      - name: Invoke workflow without inputs
+      - name: Dispatch publish
         if: steps.checkVersion.outputs.changed == 'true'
         uses: benc-uk/workflow-dispatch@v1
         with:
