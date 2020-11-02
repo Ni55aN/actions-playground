@@ -2,6 +2,9 @@ name: Check versions
 
 on:
   push:
+    branches:
+      - master
+
 
 jobs:
   first:
