@@ -1,0 +1,25 @@
+name: Check versions
+
+on:
+  push:
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [
+          {name: 'package1', path: './package1'},
+          {name: 'package2', path: './package2'}
+        ]
+    steps:
+      - name: Get result
+        run: echo "${{matrix.package.name}} ${{matrix.package.path}}"
+      - name: Check if version has been updated
+        id: checkVersion
+        uses: EndBug/version-check@v1.6.0
+        with:
+          diff-search: true
+          file-name: ${{matrix.package.path}}/package.json
+      - if: steps.checkVersion.outputs.changed == 'true'
+        run: 'echo "${{matrix.package.name}} updated"'
