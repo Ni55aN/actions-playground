@@ -28,4 +28,4 @@ jobs:
         with:
           workflow: Publish
           token: ${{secrets.PERSONAL_TOKEN}}
-          inputs: '{ name: ${{matrix.package.name}}, folder: ${{matrix.package.path}} }'
+          inputs: '{ "name": "${{matrix.package.name}}", "folder": "${{matrix.package.path}}" }'
