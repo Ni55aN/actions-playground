@@ -1,8 +1,6 @@
 {
   "name": "second",
   "version": "1.0.2",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "echo '1.0.0' > build.txt"
   },
