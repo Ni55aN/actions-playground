@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Get result
         run: echo "${{matrix.package.name}} ${{matrix.package.path}}"
+      - uses: actions/checkout@v2
       - name: Check if version has been updated
         id: checkVersion
         uses: EndBug/version-check@v1.6.0
