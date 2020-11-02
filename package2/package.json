@@ -1,8 +1,8 @@
 {
   "name": "second",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
-    "build": "echo '1.0.3' > build.txt"
+    "build": "echo '1.0.4' > build.txt"
   },
   "author": "",
   "license": "ISC"
